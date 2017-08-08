@@ -180,6 +180,7 @@ Partial Class Chat
         Me.Name = "Chat"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Chat"
+        Me.TopMost = True
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.cmsExit.ResumeLayout(False)

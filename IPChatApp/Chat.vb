@@ -43,7 +43,7 @@ Public Class Chat
                 MsgBox("Cannot connect because the IP address is unreachable.")
             End If
         Else
-            btnConnect.Text = "Disconnect"
+            btnConnect.Text = "Connect"
             txtName.Enabled = True
             txtServer.Enabled = True
         End If
@@ -71,12 +71,21 @@ Public Class Chat
                 NotifyIcon1.BalloonTipText = "New Message"
 
                 NotifyIcon1.ShowBalloonTip(20000)
-                Timer2.Enabled = True
+
+
+
+
 
                 If Me.WindowState = FormWindowState.Normal Then
                 Else
-                    Timer2.Enabled = True
-                    NotifyIcon1.Icon = SystemIcons.Information
+                    'Dim response As DialogResult = MsgBox("One new message received!! Do you want to open it now?", MsgBoxStyle.Information + MsgBoxStyle.YesNo + 4096, "IP Chat App")
+                    'If response = DialogResult.Yes Then
+                    '    Me.WindowState = FormWindowState.Normal
+                    '    Exit Sub
+                    'End If
+                    'Timer2.Enabled = True
+                    'NotifyIcon1.Icon = SystemIcons.Information
+                    Me.WindowState = FormWindowState.Normal
                 End If
 
 
@@ -91,31 +100,38 @@ Public Class Chat
         'a display name, and a client IP Address
         'If Not, Show a Message Box
 
-        Try
-            Client = New TcpClient(txtServer.Text, 65535)
+        If Ping(txtServer.Text) = True Then
+            Try
+                Client = New TcpClient(txtServer.Text, 65535)
 
-            'Declare the Client as an IP Address. 
-            'Must be in the Correct form. eg. 000.0.0.0
-            Dim Writer As New StreamWriter(Client.GetStream())
+                'Declare the Client as an IP Address. 
+                'Must be in the Correct form. eg. 000.0.0.0
+                Dim Writer As New StreamWriter(Client.GetStream())
 
-            Writer.Write(txtName.Text & " Says:  " & rtbBody.Text & vbCrLf)
-            Writer.Flush()
+                Writer.Write(txtName.Text & " Says:  " & rtbBody.Text & vbCrLf)
+                Writer.Flush()
 
-            'Write the Message in the stream
+                'Write the Message in the stream
 
-            rtbMessages.Text += (txtName.Text & " Says:  " & rtbBody.Text & vbCrLf) + vbCrLf
-            rtbMessages.SelectionStart = rtbMessages.Text.Length
-            rtbMessages.ScrollToCaret()
+                rtbMessages.Text += (txtName.Text & " Says:  " & rtbBody.Text & vbCrLf) + vbCrLf
+                rtbMessages.SelectionStart = rtbMessages.Text.Length
+                rtbMessages.ScrollToCaret()
 
-            rtbBody.Text = ""
-        Catch ex As Exception
-            Console.WriteLine(ex)
-            Dim Errorresult As String = ex.Message
-            MessageBox.Show(Errorresult & vbCrLf & vbCrLf &
-                                "Please Review Client Address",
-                                "Error Sending Message",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+                rtbBody.Text = ""
+            Catch ex As Exception
+                Console.WriteLine(ex)
+                Dim Errorresult As String = ex.Message
+                MessageBox.Show(Errorresult & vbCrLf & vbCrLf &
+                                    "Please Review Client Address",
+                                    "Error Sending Message" & vbCrLf &
+                                    "The peer maybe offline",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        Else
+            MsgBox("The specified peer has become unreachable. Please try again later.")
+        End If
+
+
     End Sub
 
     Private Sub NotifyIcon1_DoubleClick(sender As Object, e As EventArgs) Handles NotifyIcon1.DoubleClick, NotifyIcon1.BalloonTipClicked
@@ -146,29 +162,33 @@ Public Class Chat
 
         Dim result As Boolean
 
-        If btnConnect.Text = "Connect" Then
 
-            Try
-                If My.Computer.Network.Ping(peer) Then
-                    result = True
-                Else
-                    result = False
-                End If
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
-        End If
+
+        Try
+            If My.Computer.Network.Ping(peer) Then
+                result = True
+            Else
+                result = False
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
         Return result
     End Function
 
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
-        Dim counter As Integer
-        While counter <> 30000
-            counter = counter + 1
-            If counter = 30000 Then
+        Dim Start As Date = Date.Now.ToString("HH:mm:ss")
+        Dim span As TimeSpan
+        While span.TotalSeconds <> 60
+            Console.WriteLine(span.TotalSeconds)
+            Dim liveDate As Date = Date.Now.ToString("HH:mm:ss")
+            span = liveDate.Subtract(Start)
+            If span.TotalSeconds = 30 Then
                 NotifyIcon1.ShowBalloonTip(20000)
-                counter = 0
+                MsgBox("There are unread messages.", MsgBoxStyle.Information, "IP Chat App")
+                Start = Date.Now.ToString("HH:mm:ss")
             End If
+
         End While
     End Sub
 End Class
