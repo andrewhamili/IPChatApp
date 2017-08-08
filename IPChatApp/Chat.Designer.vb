@@ -45,16 +45,16 @@ Partial Class Chat
         '
         'txtName
         '
-        Me.txtName.Location = New System.Drawing.Point(124, 26)
+        Me.txtName.Location = New System.Drawing.Point(158, 26)
         Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(100, 26)
+        Me.txtName.Size = New System.Drawing.Size(100, 30)
         Me.txtName.TabIndex = 0
         '
         'txtServer
         '
-        Me.txtServer.Location = New System.Drawing.Point(320, 24)
+        Me.txtServer.Location = New System.Drawing.Point(413, 26)
         Me.txtServer.Name = "txtServer"
-        Me.txtServer.Size = New System.Drawing.Size(126, 26)
+        Me.txtServer.Size = New System.Drawing.Size(126, 30)
         Me.txtServer.TabIndex = 1
         '
         'Label1
@@ -62,24 +62,24 @@ Partial Class Chat
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(12, 29)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(106, 18)
+        Me.Label1.Size = New System.Drawing.Size(131, 23)
         Me.Label1.TabIndex = 3
         Me.Label1.Text = "Display Name"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(230, 29)
+        Me.Label2.Location = New System.Drawing.Point(300, 29)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(84, 18)
+        Me.Label2.Size = New System.Drawing.Size(107, 23)
         Me.Label2.TabIndex = 3
         Me.Label2.Text = "IP Address"
         '
         'btnConnect
         '
-        Me.btnConnect.Location = New System.Drawing.Point(452, 24)
+        Me.btnConnect.Location = New System.Drawing.Point(553, 24)
         Me.btnConnect.Name = "btnConnect"
-        Me.btnConnect.Size = New System.Drawing.Size(101, 23)
+        Me.btnConnect.Size = New System.Drawing.Size(101, 32)
         Me.btnConnect.TabIndex = 4
         Me.btnConnect.Text = "Connect"
         Me.btnConnect.UseVisualStyleBackColor = True
@@ -89,7 +89,7 @@ Partial Class Chat
         Me.GroupBox1.Controls.Add(Me.rtbMessages)
         Me.GroupBox1.Location = New System.Drawing.Point(9, 287)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(527, 150)
+        Me.GroupBox1.Size = New System.Drawing.Size(645, 150)
         Me.GroupBox1.TabIndex = 5
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Messages"
@@ -97,10 +97,10 @@ Partial Class Chat
         'rtbMessages
         '
         Me.rtbMessages.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.rtbMessages.Location = New System.Drawing.Point(3, 22)
+        Me.rtbMessages.Location = New System.Drawing.Point(3, 26)
         Me.rtbMessages.Name = "rtbMessages"
         Me.rtbMessages.ReadOnly = True
-        Me.rtbMessages.Size = New System.Drawing.Size(521, 125)
+        Me.rtbMessages.Size = New System.Drawing.Size(639, 121)
         Me.rtbMessages.TabIndex = 0
         Me.rtbMessages.Text = ""
         '
@@ -109,7 +109,7 @@ Partial Class Chat
         Me.GroupBox2.Controls.Add(Me.rtbBody)
         Me.GroupBox2.Location = New System.Drawing.Point(6, 70)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(417, 174)
+        Me.GroupBox2.Size = New System.Drawing.Size(533, 174)
         Me.GroupBox2.TabIndex = 5
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Body"
@@ -117,17 +117,17 @@ Partial Class Chat
         'rtbBody
         '
         Me.rtbBody.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.rtbBody.Location = New System.Drawing.Point(3, 22)
+        Me.rtbBody.Location = New System.Drawing.Point(3, 26)
         Me.rtbBody.Name = "rtbBody"
-        Me.rtbBody.Size = New System.Drawing.Size(411, 149)
+        Me.rtbBody.Size = New System.Drawing.Size(527, 145)
         Me.rtbBody.TabIndex = 0
         Me.rtbBody.Text = ""
         '
         'btnSend
         '
-        Me.btnSend.Location = New System.Drawing.Point(441, 150)
+        Me.btnSend.Location = New System.Drawing.Point(550, 150)
         Me.btnSend.Name = "btnSend"
-        Me.btnSend.Size = New System.Drawing.Size(101, 23)
+        Me.btnSend.Size = New System.Drawing.Size(101, 30)
         Me.btnSend.TabIndex = 4
         Me.btnSend.Text = "Send"
         Me.btnSend.UseVisualStyleBackColor = True
@@ -143,14 +143,15 @@ Partial Class Chat
         '
         'cmsExit
         '
+        Me.cmsExit.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.cmsExit.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Exit1})
         Me.cmsExit.Name = "cmsExit"
-        Me.cmsExit.Size = New System.Drawing.Size(93, 26)
+        Me.cmsExit.Size = New System.Drawing.Size(103, 28)
         '
         'Exit1
         '
         Me.Exit1.Name = "Exit1"
-        Me.Exit1.Size = New System.Drawing.Size(92, 22)
+        Me.Exit1.Size = New System.Drawing.Size(102, 24)
         Me.Exit1.Text = "Exit"
         '
         'Timer1
@@ -161,9 +162,10 @@ Partial Class Chat
         '
         'Chat
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 18.0!)
+        Me.AcceptButton = Me.btnSend
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 23.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(554, 449)
+        Me.ClientSize = New System.Drawing.Size(680, 449)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.btnSend)

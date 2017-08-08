@@ -30,18 +30,10 @@ Public Class Chat
         Timer1.Enabled = True
     End Sub
     Private Sub btnConnect_Click(sender As Object, e As EventArgs) Handles btnConnect.Click
-
         If btnConnect.Text = "Connect" Then
-            Dim isOnline As Boolean = False
-            Try
-                If My.Computer.Network.Ping(txtServer.Text) Then
-                    isOnline = True
-                Else
-                    isOnline = False
-                End If
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
+            Dim isOnline As Boolean = Ping(txtServer.Text)
+
+
             If isOnline = True Then
 
                 txtName.Enabled = False
@@ -51,10 +43,13 @@ Public Class Chat
                 MsgBox("Cannot connect because the IP address is unreachable.")
             End If
         Else
+            btnConnect.Text = "Disconnect"
             txtName.Enabled = True
             txtServer.Enabled = True
-            btnConnect.Text = "Connect"
         End If
+
+
+
 
     End Sub
 
@@ -63,13 +58,10 @@ Public Class Chat
         If Listener.Pending = True Then
             Message = ""
             Client = Listener.AcceptTcpClient()
-            Console.WriteLine("Fire1")
 
             Dim Reader As New StreamReader(Client.GetStream())
             While Reader.Peek > -1
                 Message = Message + Convert.ToChar(Reader.Read()).ToString
-
-                Console.WriteLine("Fire2")
             End While
             With rtbMessages
                 .ForeColor = Color.Black
@@ -77,10 +69,13 @@ Public Class Chat
 
                 NotifyIcon1.BalloonTipTitle = "New Message"
                 NotifyIcon1.BalloonTipText = "New Message"
+
                 NotifyIcon1.ShowBalloonTip(20000)
+                Timer2.Enabled = True
 
                 If Me.WindowState = FormWindowState.Normal Then
                 Else
+                    Timer2.Enabled = True
                     NotifyIcon1.Icon = SystemIcons.Information
                 End If
 
@@ -109,6 +104,9 @@ Public Class Chat
             'Write the Message in the stream
 
             rtbMessages.Text += (txtName.Text & " Says:  " & rtbBody.Text & vbCrLf) + vbCrLf
+            rtbMessages.SelectionStart = rtbMessages.Text.Length
+            rtbMessages.ScrollToCaret()
+
             rtbBody.Text = ""
         Catch ex As Exception
             Console.WriteLine(ex)
@@ -144,4 +142,33 @@ Public Class Chat
         Me.Close()
     End Sub
 
+    Public Function Ping(ByVal peer As String)
+
+        Dim result As Boolean
+
+        If btnConnect.Text = "Connect" Then
+
+            Try
+                If My.Computer.Network.Ping(peer) Then
+                    result = True
+                Else
+                    result = False
+                End If
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+        End If
+        Return result
+    End Function
+
+    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+        Dim counter As Integer
+        While counter <> 30000
+            counter = counter + 1
+            If counter = 30000 Then
+                NotifyIcon1.ShowBalloonTip(20000)
+                counter = 0
+            End If
+        End While
+    End Sub
 End Class
