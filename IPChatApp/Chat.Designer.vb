@@ -39,6 +39,7 @@ Partial Class Chat
         Me.Exit1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
+        Me.cbEnterToSend = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.cmsExit.SuspendLayout()
@@ -161,12 +162,22 @@ Partial Class Chat
         'Timer2
         '
         '
+        'cbEnterToSend
+        '
+        Me.cbEnterToSend.AutoSize = True
+        Me.cbEnterToSend.Location = New System.Drawing.Point(553, 122)
+        Me.cbEnterToSend.Name = "cbEnterToSend"
+        Me.cbEnterToSend.Size = New System.Drawing.Size(119, 22)
+        Me.cbEnterToSend.TabIndex = 6
+        Me.cbEnterToSend.Text = "Enter to send"
+        Me.cbEnterToSend.UseVisualStyleBackColor = True
+        '
         'Chat
         '
-        Me.AcceptButton = Me.btnSend
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 18.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(680, 449)
+        Me.Controls.Add(Me.cbEnterToSend)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.btnSend)
@@ -206,4 +217,5 @@ Partial Class Chat
     Friend WithEvents cmsExit As ContextMenuStrip
     Friend WithEvents Exit1 As ToolStripMenuItem
     Friend WithEvents Timer2 As Timer
+    Friend WithEvents cbEnterToSend As CheckBox
 End Class

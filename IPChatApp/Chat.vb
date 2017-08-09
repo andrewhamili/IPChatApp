@@ -28,6 +28,7 @@ Public Class Chat
         NotifyIcon1.BalloonTipIcon = ToolTipIcon.Info
         Listening()
         Timer1.Enabled = True
+        rtbBody.Enabled = False
     End Sub
     Private Sub btnConnect_Click(sender As Object, e As EventArgs) Handles btnConnect.Click
         If btnConnect.Text = "Connect" Then
@@ -39,6 +40,7 @@ Public Class Chat
                 txtName.Enabled = False
                 txtServer.Enabled = False
                 btnConnect.Text = "Disconnect"
+                rtbBody.Enabled = True
             Else
                 MsgBox("Cannot connect because the IP address is unreachable.")
             End If
@@ -46,6 +48,7 @@ Public Class Chat
             btnConnect.Text = "Connect"
             txtName.Enabled = True
             txtServer.Enabled = True
+            rtbBody.Enabled = False
         End If
 
 
@@ -66,6 +69,9 @@ Public Class Chat
             With rtbMessages
                 .ForeColor = Color.Black
                 .Text += Message + vbCrLf
+
+                .SelectionStart = .Text.Length
+                .ScrollToCaret()
 
                 NotifyIcon1.BalloonTipTitle = "New Message"
                 NotifyIcon1.BalloonTipText = "New Message"
@@ -95,7 +101,14 @@ Public Class Chat
     End Sub
     Private Sub btnSend_Click(ByVal sender As System.Object,
             ByVal e As System.EventArgs) Handles btnSend.Click
-
+        If btnConnect.Text = "Connect" Then
+            MsgBox("Please Connect first!!")
+            Exit Sub
+        End If
+        If String.IsNullOrEmpty(rtbBody.Text) Then
+            MsgBox("Please enter a message first", MsgBoxStyle.Exclamation, "IP Chat App")
+            Exit Sub
+        End If
         'Check to make sure that the user has entered 
         'a display name, and a client IP Address
         'If Not, Show a Message Box
@@ -130,7 +143,7 @@ Public Class Chat
         Else
             MsgBox("The specified peer has become unreachable. Please try again later.")
         End If
-
+        rtbBody.Focus()
 
     End Sub
 
@@ -190,5 +203,13 @@ Public Class Chat
             End If
 
         End While
+    End Sub
+
+    Private Sub cbEnterToSend_CheckedChanged(sender As Object, e As EventArgs) Handles cbEnterToSend.CheckedChanged
+        If cbEnterToSend.Checked Then
+            AcceptButton = btnSend
+        ElseIf cbEnterToSend.Checked = False Then
+            AcceptButton = Nothing
+        End If
     End Sub
 End Class
