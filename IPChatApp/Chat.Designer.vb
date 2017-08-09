@@ -23,6 +23,7 @@ Partial Class Chat
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Chat))
         Me.txtName = New System.Windows.Forms.TextBox()
         Me.txtServer = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -47,14 +48,14 @@ Partial Class Chat
         '
         Me.txtName.Location = New System.Drawing.Point(158, 26)
         Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(100, 30)
+        Me.txtName.Size = New System.Drawing.Size(100, 26)
         Me.txtName.TabIndex = 0
         '
         'txtServer
         '
         Me.txtServer.Location = New System.Drawing.Point(413, 26)
         Me.txtServer.Name = "txtServer"
-        Me.txtServer.Size = New System.Drawing.Size(126, 30)
+        Me.txtServer.Size = New System.Drawing.Size(126, 26)
         Me.txtServer.TabIndex = 1
         '
         'Label1
@@ -62,7 +63,7 @@ Partial Class Chat
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(12, 29)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(131, 23)
+        Me.Label1.Size = New System.Drawing.Size(106, 18)
         Me.Label1.TabIndex = 3
         Me.Label1.Text = "Display Name"
         '
@@ -71,7 +72,7 @@ Partial Class Chat
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(300, 29)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(107, 23)
+        Me.Label2.Size = New System.Drawing.Size(84, 18)
         Me.Label2.TabIndex = 3
         Me.Label2.Text = "IP Address"
         '
@@ -97,10 +98,10 @@ Partial Class Chat
         'rtbMessages
         '
         Me.rtbMessages.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.rtbMessages.Location = New System.Drawing.Point(3, 26)
+        Me.rtbMessages.Location = New System.Drawing.Point(3, 22)
         Me.rtbMessages.Name = "rtbMessages"
         Me.rtbMessages.ReadOnly = True
-        Me.rtbMessages.Size = New System.Drawing.Size(639, 121)
+        Me.rtbMessages.Size = New System.Drawing.Size(639, 125)
         Me.rtbMessages.TabIndex = 0
         Me.rtbMessages.Text = ""
         '
@@ -117,9 +118,9 @@ Partial Class Chat
         'rtbBody
         '
         Me.rtbBody.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.rtbBody.Location = New System.Drawing.Point(3, 26)
+        Me.rtbBody.Location = New System.Drawing.Point(3, 22)
         Me.rtbBody.Name = "rtbBody"
-        Me.rtbBody.Size = New System.Drawing.Size(527, 145)
+        Me.rtbBody.Size = New System.Drawing.Size(527, 149)
         Me.rtbBody.TabIndex = 0
         Me.rtbBody.Text = ""
         '
@@ -146,12 +147,12 @@ Partial Class Chat
         Me.cmsExit.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.cmsExit.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Exit1})
         Me.cmsExit.Name = "cmsExit"
-        Me.cmsExit.Size = New System.Drawing.Size(103, 28)
+        Me.cmsExit.Size = New System.Drawing.Size(93, 26)
         '
         'Exit1
         '
         Me.Exit1.Name = "Exit1"
-        Me.Exit1.Size = New System.Drawing.Size(102, 24)
+        Me.Exit1.Size = New System.Drawing.Size(92, 22)
         Me.Exit1.Text = "Exit"
         '
         'Timer1
@@ -163,7 +164,7 @@ Partial Class Chat
         'Chat
         '
         Me.AcceptButton = Me.btnSend
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 23.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 18.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(680, 449)
         Me.Controls.Add(Me.GroupBox2)
@@ -175,6 +176,7 @@ Partial Class Chat
         Me.Controls.Add(Me.txtServer)
         Me.Controls.Add(Me.txtName)
         Me.Font = New System.Drawing.Font("Arial", 12.0!)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = False
         Me.Name = "Chat"

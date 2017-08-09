@@ -24,7 +24,7 @@ Public Class Chat
 
     Private Sub Chat_Load(sender As Object, e As EventArgs) Handles Me.Load
         NotifyIcon1.Visible = True
-        NotifyIcon1.Icon = SystemIcons.Application
+        NotifyIcon1.Icon = Me.Icon
         NotifyIcon1.BalloonTipIcon = ToolTipIcon.Info
         Listening()
         Timer1.Enabled = True
@@ -140,7 +140,7 @@ Public Class Chat
             Me.ShowInTaskbar = False
         Else
             Me.WindowState = FormWindowState.Normal
-            NotifyIcon1.Icon = SystemIcons.Application
+
             Me.ShowInTaskbar = True
         End If
         Timer2.Enabled = False
